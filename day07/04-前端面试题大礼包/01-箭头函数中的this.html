@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*ES6箭头函数中的this
+        (1)箭头函数中的没有this : 这意味着 call() apply() bind() 无法修改箭头函数中的this
+        (2)箭头函数中的this指向 ：访问上一个作用域的this
+            说人话：函数在哪个作用域声明，this就是谁 (本质是通过作用域链)
+        
+        */
+
+        //1.全局函数 ： window
+        let fn = () => {
+            console.log(this);
+
+        };
+
+        fn();//window
+        fn.call({ a: 11 });//window   箭头函数中的this无法修改，因为箭头函数没有this
+
+        //2.对象方法： window  (因为对象无法开辟作用域，obj所在作用域还是window)
+        let obj = {
+            sayHi: () => {
+                console.log('学习使我快乐');
+
+                console.log(this);
+            }
+        };
+        obj.sayHi();//window
+
+        //3.局部函数
+
+        var person = {
+            play: function () {
+                console.log('play中的this');
+                console.log(this);//person
+                
+                //在局部作用域声明一个箭头函数
+                let fn2 = () => {
+                    console.log('fn2在一级链中被声明，我的this就是一级链中的this');
+                    console.log(this);//person
+                };
+                fn2();
+            }
+        };
+        person.play();
+    </script>
+</body>
+
+</html>

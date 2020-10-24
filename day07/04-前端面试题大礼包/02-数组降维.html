@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /* 
+        数组降维：把一个二维数组变成一维数组
+        */
+
+        //需求：将二维数组转为一维数组 ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+        var arr = [['a','b','c'],['d','e','f'],['g','h','i']]; 
+        /* 解决方案
+            （1）遍历arr中的每一个元素（一维数组）
+            (2)使用concat连接到新数组中
+        */
+        var arr1 = [];
+        for(var i = 0;i<arr.length;i++){
+            //连接数组
+            arr1 = arr1.concat(arr[i]);
+        };
+        console.log(arr1);//["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+        
+    </script>
+</body>
+</html>

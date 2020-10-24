@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 数组升维：把一维数组变成二维数组 */
+
+        //需求 ： 将下列数组arr，根据类别type升为二维数组
+        var arr = [
+            {
+                type: '电子产品',
+                name: 'iPhone',
+                price: 8888
+            },
+            {
+                type: '家具',
+                name: '桌子',
+                price: 100
+            },
+            {
+                type: '食品',
+                name: '瓜子',
+                price: 10
+            },
+            {
+                type: '家具',
+                name: '椅子',
+                price: 380
+            }, {
+                type: '电子产品',
+                name: '小米手机',
+                price: 1380
+            }, {
+                type: '食品',
+                name: '辣条',
+                price: 5
+            }, {
+                type: '食品',
+                name: '咖啡',
+                price: 50
+            }
+        ];
+
+        /*
+        解决方案： 
+            1.创建空对象obj： 找出arr中type的种类和对应的数量 （利用对象属性名唯一的特点）
+            2.创建空数组arr1 ： 存储二维数组
+            3.遍历arr,根据obj对象，将arr拆分成二维数组存入arr1中
+        */
+        //1.创建空对象： 找出arr中type的种类
+        var obj = {};
+        var arr1 = [];
+        for (var i = 0; i < arr.length; i++) {
+            var value = arr[i];
+            if (obj[value.type] == undefined) {//第一次出现
+                obj[value.type] = 1;//记录次数
+                var tempArr = [value];//声明数组存储value
+                arr1.push({type:value.type,data:tempArr});
+            } else {//第二次出现，检查这个type是arr1中第几个元素的type
+                for(var j = 0;j<arr1.length;j++){
+                    var value1 = arr1[j];
+                    if(value.type == value1.type){
+                        arr1[j].data.push(value);
+                    }
+                };
+            }
+        };
+        console.log(obj);//{电子产品, 家具, 食品}
+        console.log(arr1);
+        
+
+    </script>
+</body>
+
+</html>
